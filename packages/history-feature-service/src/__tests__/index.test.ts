@@ -10,17 +10,17 @@ import {
   ServerRequest
 } from '@feature-hub/server-renderer-feature-service';
 import {History, HistoryServiceV1, createHistoryServiceDefinition} from '..';
-import {FullLocationTransformer} from '../full-location';
+import {RootLocationTransformer} from '../root-location';
 
 describe('historyService', () => {
   let createHistoryServiceBinder: (
     serverRequest?: ServerRequest,
-    fullLocationTransformer?: FullLocationTransformer
+    rootLocationTransformer?: RootLocationTransformer
   ) => FeatureServiceBinder<HistoryServiceV1>;
   let pushStateSpy: jest.SpyInstance;
   let replaceStateSpy: jest.SpyInstance;
   let consoleWarnSpy: jest.SpyInstance;
-  let mockFullLocationTransformer: FullLocationTransformer;
+  let mockRootLocationTransformer: RootLocationTransformer;
 
   const getLocation = (historyService: HistoryServiceV1) =>
     historyService.rootLocation &&
@@ -43,11 +43,11 @@ describe('historyService', () => {
       headers: {}
     };
 
-    mockFullLocationTransformer = {
-      createFullLocation: jest.fn(() => ({
-        pathname: 'fullpath'
+    mockRootLocationTransformer = {
+      createRootLocation: jest.fn(() => ({
+        pathname: 'rootpath'
       })),
-      getConsumerPathFromFullLocation: jest.fn(() => 'consumerpath')
+      getConsumerPathFromRootLocation: jest.fn(() => 'consumerpath')
     };
 
     createHistoryServiceBinder = (
@@ -70,7 +70,7 @@ describe('historyService', () => {
       };
 
       const historyServiceBinder = createHistoryServiceDefinition(
-        mockFullLocationTransformer
+        mockRootLocationTransformer
       ).create(mockEnv)['1.1'] as FeatureServiceBinder<HistoryServiceV1>;
 
       return historyServiceBinder;
@@ -195,8 +195,8 @@ describe('historyService', () => {
 
       it('retrieves consumer specific locations from the initial location', () => {
         const historyServiceBinder = createHistoryServiceBinder();
-        (mockFullLocationTransformer.getConsumerPathFromFullLocation as jest.Mock).mockImplementation(
-          (_fullLocation, id) => id
+        (mockRootLocationTransformer.getConsumerPathFromRootLocation as jest.Mock).mockImplementation(
+          (_rootLocation, id) => id
         );
 
         const primaryHistory = historyServiceBinder(
@@ -240,14 +240,14 @@ describe('historyService', () => {
         history1.push('/foo');
         history2.push('/bar?baz=1');
 
-        expect(window.location.href).toBe('http://example.com/fullpath');
+        expect(window.location.href).toBe('http://example.com/rootpath');
 
         expect(
-          mockFullLocationTransformer.createFullLocation
+          mockRootLocationTransformer.createRootLocation
         ).toHaveBeenCalledTimes(2);
 
         expect(
-          (mockFullLocationTransformer.createFullLocation as jest.Mock).mock
+          (mockRootLocationTransformer.createRootLocation as jest.Mock).mock
             .calls
         ).toMatchObject([
           [{pathname: '/foo'}, {pathname: '/'}, 'test:1'],
@@ -256,7 +256,7 @@ describe('historyService', () => {
               pathname: '/bar',
               search: '?baz=1'
             },
-            {pathname: '/fullpath'},
+            {pathname: '/rootpath'},
             'test:2'
           ]
         ]);
@@ -284,7 +284,7 @@ describe('historyService', () => {
         history2.replace('/bar?baz=1');
 
         expect(
-          (mockFullLocationTransformer.createFullLocation as jest.Mock).mock
+          (mockRootLocationTransformer.createRootLocation as jest.Mock).mock
             .calls
         ).toMatchObject([
           [
@@ -300,7 +300,7 @@ describe('historyService', () => {
               pathname: '/bar',
               search: '?baz=1'
             },
-            {pathname: '/fullpath'},
+            {pathname: '/rootpath'},
             'test:2'
           ]
         ]);
@@ -308,7 +308,7 @@ describe('historyService', () => {
         expect(history1.length).toEqual(1);
         expect(history2.length).toEqual(1);
 
-        expect(window.location.href).toBe('http://example.com/fullpath');
+        expect(window.location.href).toBe('http://example.com/rootpath');
 
         expect(replaceStateSpy).toHaveBeenCalledTimes(2);
       });
@@ -324,12 +324,12 @@ describe('historyService', () => {
 
         history.push('foo');
 
-        (mockFullLocationTransformer.createFullLocation as jest.Mock).mockClear();
+        (mockRootLocationTransformer.createRootLocation as jest.Mock).mockClear();
 
         history.go(-1);
 
         expect(
-          mockFullLocationTransformer.createFullLocation
+          mockRootLocationTransformer.createRootLocation
         ).not.toHaveBeenCalled();
 
         expect(consoleWarnSpy).toHaveBeenCalledWith(
@@ -348,12 +348,12 @@ describe('historyService', () => {
 
         history.push('foo');
 
-        (mockFullLocationTransformer.createFullLocation as jest.Mock).mockClear();
+        (mockRootLocationTransformer.createRootLocation as jest.Mock).mockClear();
 
         history.goBack();
 
         expect(
-          mockFullLocationTransformer.createFullLocation
+          mockRootLocationTransformer.createRootLocation
         ).not.toHaveBeenCalled();
 
         expect(consoleWarnSpy).toHaveBeenCalledWith(
@@ -372,15 +372,15 @@ describe('historyService', () => {
 
         history.push('foo');
 
-        (mockFullLocationTransformer.createFullLocation as jest.Mock).mockClear();
+        (mockRootLocationTransformer.createRootLocation as jest.Mock).mockClear();
 
         history.goForward();
 
         expect(
-          mockFullLocationTransformer.createFullLocation
+          mockRootLocationTransformer.createRootLocation
         ).not.toHaveBeenCalled();
 
-        expect(window.location.href).toBe('http://example.com/fullpath');
+        expect(window.location.href).toBe('http://example.com/rootpath');
 
         expect(consoleWarnSpy).toHaveBeenCalledWith(
           'history.goForward() is not supported.'
@@ -593,7 +593,7 @@ describe('historyService', () => {
     });
 
     describe('#createHref()', () => {
-      it('returns the href for the given location based on the full browser history', () => {
+      it('returns the href for the given location based on the root browser history', () => {
         const historyServiceBinder = createHistoryServiceBinder();
 
         const browserHistory = historyServiceBinder(
@@ -605,16 +605,16 @@ describe('historyService', () => {
         const href = browserHistory.createHref(location);
 
         expect(
-          (mockFullLocationTransformer.createFullLocation as jest.Mock).mock
+          (mockRootLocationTransformer.createRootLocation as jest.Mock).mock
             .calls
         ).toMatchObject([[location, {pathname: '/'}, 'test:pri']]);
 
-        expect(href).toBe('fullpath');
+        expect(href).toBe('rootpath');
       });
     });
 
     describe('when the history consumer is destroyed', () => {
-      it('removes the consumer path from the full location', () => {
+      it('removes the consumer path from the root location', () => {
         const historyServiceBinder = createHistoryServiceBinder();
 
         const primaryHistoryServiceBinder = historyServiceBinder('test:pri');
@@ -622,16 +622,16 @@ describe('historyService', () => {
 
         browserHistory.push('/something');
 
-        expect(window.location.href).toBe('http://example.com/fullpath');
+        expect(window.location.href).toBe('http://example.com/rootpath');
 
-        (mockFullLocationTransformer.createFullLocation as jest.Mock).mockClear();
+        (mockRootLocationTransformer.createRootLocation as jest.Mock).mockClear();
 
         primaryHistoryServiceBinder.unbind!();
 
         expect(
-          (mockFullLocationTransformer.createFullLocation as jest.Mock).mock
+          (mockRootLocationTransformer.createRootLocation as jest.Mock).mock
             .calls
-        ).toMatchObject([[undefined, {pathname: '/fullpath'}, 'test:pri']]);
+        ).toMatchObject([[undefined, {pathname: '/rootpath'}, 'test:pri']]);
       });
 
       describe('a POP event', () => {
@@ -776,8 +776,8 @@ describe('historyService', () => {
 
       it('retrieves the consumer-specific locations from the initial location', () => {
         const historyServiceBinder = createHistoryServiceBinder();
-        (mockFullLocationTransformer.getConsumerPathFromFullLocation as jest.Mock).mockImplementation(
-          (_fullLocation, id) => id
+        (mockRootLocationTransformer.getConsumerPathFromRootLocation as jest.Mock).mockImplementation(
+          (_rootLocation, id) => id
         );
 
         const primaryHistory = historyServiceBinder(
@@ -886,7 +886,7 @@ describe('historyService', () => {
         history2.push('/bar?baz=1');
 
         expect(
-          (mockFullLocationTransformer.createFullLocation as jest.Mock).mock
+          (mockRootLocationTransformer.createRootLocation as jest.Mock).mock
             .calls
         ).toMatchObject([
           [
@@ -902,7 +902,7 @@ describe('historyService', () => {
               pathname: '/bar',
               search: '?baz=1'
             },
-            {pathname: '/fullpath'},
+            {pathname: '/rootpath'},
             'test:2'
           ]
         ]);
@@ -910,7 +910,7 @@ describe('historyService', () => {
         expect(history1.length).toEqual(2);
         expect(history2.length).toEqual(2);
 
-        expect(getLocation(historyService)).toBe('/fullpath');
+        expect(getLocation(historyService)).toBe('/rootpath');
       });
     });
 
@@ -929,7 +929,7 @@ describe('historyService', () => {
         history2.replace('/bar?baz=1');
 
         expect(
-          (mockFullLocationTransformer.createFullLocation as jest.Mock).mock
+          (mockRootLocationTransformer.createRootLocation as jest.Mock).mock
             .calls
         ).toMatchObject([
           [
@@ -945,7 +945,7 @@ describe('historyService', () => {
               pathname: '/bar',
               search: '?baz=1'
             },
-            {pathname: '/fullpath'},
+            {pathname: '/rootpath'},
             'test:2'
           ]
         ]);
@@ -953,7 +953,7 @@ describe('historyService', () => {
         expect(history1.length).toEqual(1);
         expect(history2.length).toEqual(1);
 
-        expect(getLocation(historyService)).toBe('/fullpath');
+        expect(getLocation(historyService)).toBe('/rootpath');
       });
     });
 
@@ -965,12 +965,12 @@ describe('historyService', () => {
         const history = historyService.createMemoryHistory();
 
         history.push('foo');
-        (mockFullLocationTransformer.createFullLocation as jest.Mock).mockClear();
+        (mockRootLocationTransformer.createRootLocation as jest.Mock).mockClear();
 
         history.go(-1);
 
         expect(
-          mockFullLocationTransformer.createFullLocation
+          mockRootLocationTransformer.createRootLocation
         ).not.toHaveBeenCalled();
 
         expect(consoleWarnSpy).toHaveBeenCalledWith(
@@ -987,12 +987,12 @@ describe('historyService', () => {
         const history = historyService.createMemoryHistory();
 
         history.push('foo');
-        (mockFullLocationTransformer.createFullLocation as jest.Mock).mockClear();
+        (mockRootLocationTransformer.createRootLocation as jest.Mock).mockClear();
 
         history.goBack();
 
         expect(
-          mockFullLocationTransformer.createFullLocation
+          mockRootLocationTransformer.createRootLocation
         ).not.toHaveBeenCalled();
 
         expect(consoleWarnSpy).toHaveBeenCalledWith(
@@ -1010,12 +1010,12 @@ describe('historyService', () => {
 
         history.push('foo');
 
-        (mockFullLocationTransformer.createFullLocation as jest.Mock).mockClear();
+        (mockRootLocationTransformer.createRootLocation as jest.Mock).mockClear();
 
         history.goForward();
 
         expect(
-          mockFullLocationTransformer.createFullLocation
+          mockRootLocationTransformer.createRootLocation
         ).not.toHaveBeenCalled();
 
         expect(consoleWarnSpy).toHaveBeenCalledWith(
@@ -1032,12 +1032,12 @@ describe('historyService', () => {
         const history = historyService.createMemoryHistory();
         history.push('foo');
 
-        (mockFullLocationTransformer.createFullLocation as jest.Mock).mockClear();
+        (mockRootLocationTransformer.createRootLocation as jest.Mock).mockClear();
 
         expect(history.canGo(-1)).toBe(false);
 
         expect(
-          mockFullLocationTransformer.createFullLocation
+          mockRootLocationTransformer.createRootLocation
         ).not.toHaveBeenCalled();
 
         expect(consoleWarnSpy).toHaveBeenCalledWith(
@@ -1153,7 +1153,7 @@ describe('historyService', () => {
     });
 
     describe('#createHref()', () => {
-      it('returns the href for the given location based on the full memory history', () => {
+      it('returns the href for the given location based on the root memory history', () => {
         const historyServiceBinder = createHistoryServiceBinder();
 
         const memoryHistory = historyServiceBinder(
@@ -1165,16 +1165,16 @@ describe('historyService', () => {
         const href = memoryHistory.createHref(location);
 
         expect(
-          (mockFullLocationTransformer.createFullLocation as jest.Mock).mock
+          (mockRootLocationTransformer.createRootLocation as jest.Mock).mock
             .calls
         ).toMatchObject([[location, {pathname: '/example'}, 'test:pri']]);
 
-        expect(href).toBe('fullpath');
+        expect(href).toBe('rootpath');
       });
     });
 
     describe('when the history consumer is destroyed', () => {
-      it('removes the consumer path from the full location', () => {
+      it('removes the consumer path from the root location', () => {
         const historyServiceBinder = createHistoryServiceBinder();
 
         const serviceBinding = historyServiceBinder('test:pri');
@@ -1185,14 +1185,14 @@ describe('historyService', () => {
 
         memoryHistory.push('/foo');
 
-        (mockFullLocationTransformer.createFullLocation as jest.Mock).mockClear();
+        (mockRootLocationTransformer.createRootLocation as jest.Mock).mockClear();
 
         serviceBinding.unbind!();
 
         expect(
-          (mockFullLocationTransformer.createFullLocation as jest.Mock).mock
+          (mockRootLocationTransformer.createRootLocation as jest.Mock).mock
             .calls
-        ).toMatchObject([[undefined, {pathname: '/fullpath'}, 'test:pri']]);
+        ).toMatchObject([[undefined, {pathname: '/rootpath'}, 'test:pri']]);
       });
     });
   });

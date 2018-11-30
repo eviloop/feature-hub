@@ -950,11 +950,11 @@ img { max-width: 100%; }
 				<li class=" tsd-kind-method tsd-parent-kind-class">
 					<a href="memoryhistory.html#cango" class="tsd-kind-icon">can<wbr>Go</a>
 				</li>
-				<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
-					<a href="memoryhistory.html#createfulllocation" class="tsd-kind-icon">create<wbr>Full<wbr>Location</a>
-				</li>
 				<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 					<a href="memoryhistory.html#createhref" class="tsd-kind-icon">create<wbr>Href</a>
+				</li>
+				<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
+					<a href="memoryhistory.html#createrootlocation" class="tsd-kind-icon">create<wbr>Root<wbr>Location</a>
 				</li>
 				<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 					<a href="memoryhistory.html#destroy" class="tsd-kind-icon">destroy</a>
@@ -986,13 +986,13 @@ img { max-width: 100%; }
 			<a href="../interfaces/consumerpaths.html" class="tsd-kind-icon">Consumer<wbr>Paths</a>
 		</li>
 		<li class=" tsd-kind-interface">
-			<a href="../interfaces/fulllocationoptions.html" class="tsd-kind-icon">Full<wbr>Location<wbr>Options</a>
-		</li>
-		<li class=" tsd-kind-interface">
-			<a href="../interfaces/fulllocationtransformer.html" class="tsd-kind-icon">Full<wbr>Location<wbr>Transformer</a>
-		</li>
-		<li class=" tsd-kind-interface">
 			<a href="../interfaces/historyservicev1.html" class="tsd-kind-icon">History<wbr>Service<wbr>V1</a>
+		</li>
+		<li class=" tsd-kind-interface">
+			<a href="../interfaces/rootlocationoptions.html" class="tsd-kind-icon">Root<wbr>Location<wbr>Options</a>
+		</li>
+		<li class=" tsd-kind-interface">
+			<a href="../interfaces/rootlocationtransformer.html" class="tsd-kind-icon">Root<wbr>Location<wbr>Transformer</a>
 		</li>
 		<li class=" tsd-kind-interface">
 			<a href="../interfaces/sharedhistoryservice.html" class="tsd-kind-icon">Shared<wbr>History<wbr>Service</a>
@@ -1004,10 +1004,10 @@ img { max-width: 100%; }
 			<a href="../globals.html#belongstocombinedlocation" class="tsd-kind-icon">belongs<wbr>ToCombined<wbr>Location</a>
 		</li>
 		<li class=" tsd-kind-function">
-			<a href="../globals.html#createfulllocationtransformer" class="tsd-kind-icon">create<wbr>Full<wbr>Location<wbr>Transformer</a>
+			<a href="../globals.html#createhistoryservicedefinition" class="tsd-kind-icon">create<wbr>History<wbr>Service<wbr>Definition</a>
 		</li>
 		<li class=" tsd-kind-function">
-			<a href="../globals.html#createhistoryservicedefinition" class="tsd-kind-icon">create<wbr>History<wbr>Service<wbr>Definition</a>
+			<a href="../globals.html#createrootlocationtransformer" class="tsd-kind-icon">create<wbr>Root<wbr>Location<wbr>Transformer</a>
 		</li>
 		<li class=" tsd-kind-function">
 			<a href="../globals.html#getconsumerpath" class="tsd-kind-icon">get<wbr>Consumer<wbr>Path</a>
@@ -1073,8 +1073,8 @@ img { max-width: 100%; }
 						<ul class="tsd-index-list">
 							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="memoryhistory.html#block" class="tsd-kind-icon">block</a></li>
 							<li class="tsd-kind-method tsd-parent-kind-class"><a href="memoryhistory.html#cango" class="tsd-kind-icon">can<wbr>Go</a></li>
-							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected"><a href="memoryhistory.html#createfulllocation" class="tsd-kind-icon">create<wbr>Full<wbr>Location</a></li>
 							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="memoryhistory.html#createhref" class="tsd-kind-icon">create<wbr>Href</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected"><a href="memoryhistory.html#createrootlocation" class="tsd-kind-icon">create<wbr>Root<wbr>Location</a></li>
 							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="memoryhistory.html#destroy" class="tsd-kind-icon">destroy</a></li>
 							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="memoryhistory.html#go" class="tsd-kind-icon">go</a></li>
 							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="memoryhistory.html#goback" class="tsd-kind-icon">go<wbr>Back</a></li>
@@ -1093,7 +1093,7 @@ img { max-width: 100%; }
 				<a name="constructor" class="tsd-anchor"></a>
 				<h3>constructor</h3>
 				<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class tsd-is-inherited">
-					<li class="tsd-signature tsd-kind-icon">new <wbr>Memory<wbr>History<span class="tsd-signature-symbol">(</span>consumerId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, combinedHistory<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">History</span>, fullLocationTransformer<span class="tsd-signature-symbol">: </span><a href="../interfaces/fulllocationtransformer.html" class="tsd-signature-type">FullLocationTransformer</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="memoryhistory.html" class="tsd-signature-type">MemoryHistory</a></li>
+					<li class="tsd-signature tsd-kind-icon">new <wbr>Memory<wbr>History<span class="tsd-signature-symbol">(</span>consumerId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, combinedHistory<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">History</span>, rootLocationTransformer<span class="tsd-signature-symbol">: </span><a href="../interfaces/rootlocationtransformer.html" class="tsd-signature-type">RootLocationTransformer</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="memoryhistory.html" class="tsd-signature-type">MemoryHistory</a></li>
 				</ul>
 				<ul class="tsd-descriptions">
 					<li class="tsd-description">
@@ -1107,7 +1107,7 @@ img { max-width: 100%; }
 								<h5>combinedHistory: <span class="tsd-signature-type">History</span></h5>
 							</li>
 							<li>
-								<h5>fullLocationTransformer: <a href="../interfaces/fulllocationtransformer.html" class="tsd-signature-type">FullLocationTransformer</a></h5>
+								<h5>rootLocationTransformer: <a href="../interfaces/rootlocationtransformer.html" class="tsd-signature-type">RootLocationTransformer</a></h5>
 							</li>
 						</ul>
 						<h4 class="tsd-returns-title">Returns <a href="memoryhistory.html" class="tsd-signature-type">MemoryHistory</a></h4>
@@ -1215,25 +1215,6 @@ img { max-width: 100%; }
 					</li>
 				</ul>
 			</section>
-			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
-				<a name="createfulllocation" class="tsd-anchor"></a>
-				<h3><span class="tsd-flag ts-flagProtected">Protected</span> create<wbr>Full<wbr>Location</h3>
-				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
-					<li class="tsd-signature tsd-kind-icon">create<wbr>Full<wbr>Location<span class="tsd-signature-symbol">(</span>consumerLocation<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Location</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">LocationDescriptorObject</span></li>
-				</ul>
-				<ul class="tsd-descriptions">
-					<li class="tsd-description">
-						
-						<h4 class="tsd-parameters-title">Parameters</h4>
-						<ul class="tsd-parameters">
-							<li>
-								<h5>consumerLocation: <span class="tsd-signature-type">Location</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></h5>
-							</li>
-						</ul>
-						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">LocationDescriptorObject</span></h4>
-					</li>
-				</ul>
-			</section>
 			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 				<a name="createhref" class="tsd-anchor"></a>
 				<h3>create<wbr>Href</h3>
@@ -1250,6 +1231,25 @@ img { max-width: 100%; }
 							</li>
 						</ul>
 						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">history.Href</span></h4>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
+				<a name="createrootlocation" class="tsd-anchor"></a>
+				<h3><span class="tsd-flag ts-flagProtected">Protected</span> create<wbr>Root<wbr>Location</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
+					<li class="tsd-signature tsd-kind-icon">create<wbr>Root<wbr>Location<span class="tsd-signature-symbol">(</span>consumerLocation<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Location</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">LocationDescriptorObject</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5>consumerLocation: <span class="tsd-signature-type">Location</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></h5>
+							</li>
+						</ul>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">LocationDescriptorObject</span></h4>
 					</li>
 				</ul>
 			</section>

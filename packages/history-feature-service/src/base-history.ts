@@ -1,5 +1,5 @@
 import * as history from 'history';
-import {FullLocationTransformer} from './full-location';
+import {RootLocationTransformer} from './root-location';
 
 export interface ConsumerHistory extends history.History {
   destroy(): void;
@@ -12,9 +12,9 @@ export abstract class BaseHistory implements ConsumerHistory {
   public constructor(
     protected readonly consumerId: string,
     protected readonly combinedHistory: history.History,
-    private readonly fullLocationTransformer: FullLocationTransformer
+    private readonly rootLocationTransformer: RootLocationTransformer
   ) {
-    const initialConsumerPath = this.getConsumerPathFromFullLocation(
+    const initialConsumerPath = this.getConsumerPathFromRootLocation(
       combinedHistory.location
     );
 
@@ -82,19 +82,19 @@ export abstract class BaseHistory implements ConsumerHistory {
     const consumerLocation = history.createLocation(location);
 
     return this.combinedHistory.createHref(
-      this.createFullLocation(consumerLocation)
+      this.createRootLocation(consumerLocation)
     );
   }
 
   public destroy(): void {
     this.unregisterCallbacks.forEach(unregister => unregister());
-    this.combinedHistory.replace(this.createFullLocation(undefined));
+    this.combinedHistory.replace(this.createRootLocation(undefined));
   }
 
-  protected createFullLocation(
+  protected createRootLocation(
     consumerLocation: history.Location | undefined
   ): history.LocationDescriptorObject {
-    return this.fullLocationTransformer.createFullLocation(
+    return this.rootLocationTransformer.createRootLocation(
       consumerLocation,
       this.combinedHistory.location,
       this.consumerId
@@ -105,15 +105,15 @@ export abstract class BaseHistory implements ConsumerHistory {
     consumerLocation: history.Location,
     method: 'push' | 'replace'
   ): void {
-    this.combinedHistory[method](this.createFullLocation(consumerLocation));
+    this.combinedHistory[method](this.createRootLocation(consumerLocation));
     this.setCombinedHistoryKey(consumerLocation);
     this.consumerHistory[method](consumerLocation);
   }
 
-  private getConsumerPathFromFullLocation(
+  private getConsumerPathFromRootLocation(
     location: history.Location
   ): string | undefined {
-    return this.fullLocationTransformer.getConsumerPathFromFullLocation(
+    return this.rootLocationTransformer.getConsumerPathFromRootLocation(
       location,
       this.consumerId
     );

@@ -8,8 +8,8 @@ import {ServerRendererV1} from '@feature-hub/server-renderer-feature-service';
 import * as history from 'history';
 import {ConsumerHistory} from './base-history';
 import {BrowserHistory} from './browser-history';
-import {FullLocationTransformer} from './full-location';
 import {MemoryHistory} from './memory-history';
+import {RootLocationTransformer} from './root-location';
 
 export {
   Action,
@@ -23,7 +23,7 @@ export {
   MemoryHistoryBuildOptions,
   UnregisterCallback
 } from 'history';
-export * from './full-location';
+export * from './root-location';
 
 export interface HistoryServiceV1 {
   readonly rootLocation?: history.Location;
@@ -38,7 +38,7 @@ export interface SharedHistoryService extends SharedFeatureService {
 const serviceId = 's2:history';
 
 export function createHistoryServiceDefinition(
-  fullLocationTransformer: FullLocationTransformer
+  rootLocationTransformer: RootLocationTransformer
 ): FeatureServiceProviderDefinition {
   return {
     id: serviceId,
@@ -75,7 +75,7 @@ export function createHistoryServiceDefinition(
                 new BrowserHistory(
                   consumerId,
                   browserHistory,
-                  fullLocationTransformer
+                  rootLocationTransformer
                 )
               );
             },
@@ -101,7 +101,7 @@ export function createHistoryServiceDefinition(
                 new MemoryHistory(
                   consumerId,
                   memoryHistory,
-                  fullLocationTransformer
+                  rootLocationTransformer
                 )
               );
             }

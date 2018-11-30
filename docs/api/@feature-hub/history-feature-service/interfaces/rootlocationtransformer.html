@@ -1,7 +1,7 @@
 <!DOCTYPE html><html class="minimal no-js"><head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>FullLocationTransformer | @feature-hub/history-feature-service</title>
+	<title>RootLocationTransformer | @feature-hub/history-feature-service</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<style type="text/css">/*! normalize.css v1.1.3 | MIT License | git.io/normalize */
@@ -921,21 +921,21 @@ img { max-width: 100%; }
 			<a href="consumerpaths.html" class="tsd-kind-icon">Consumer<wbr>Paths</a>
 		</li>
 		<li class=" tsd-kind-interface">
-			<a href="fulllocationoptions.html" class="tsd-kind-icon">Full<wbr>Location<wbr>Options</a>
-		</li>
-		<li class="current tsd-kind-interface">
-			<a href="fulllocationtransformer.html" class="tsd-kind-icon">Full<wbr>Location<wbr>Transformer</a>
-			<ul>
-				<li class=" tsd-kind-method tsd-parent-kind-interface">
-					<a href="fulllocationtransformer.html#createfulllocation" class="tsd-kind-icon">create<wbr>Full<wbr>Location</a>
-				</li>
-				<li class=" tsd-kind-method tsd-parent-kind-interface">
-					<a href="fulllocationtransformer.html#getconsumerpathfromfulllocation" class="tsd-kind-icon">get<wbr>Consumer<wbr>Path<wbr>From<wbr>Full<wbr>Location</a>
-				</li>
-			</ul>
+			<a href="historyservicev1.html" class="tsd-kind-icon">History<wbr>Service<wbr>V1</a>
 		</li>
 		<li class=" tsd-kind-interface">
-			<a href="historyservicev1.html" class="tsd-kind-icon">History<wbr>Service<wbr>V1</a>
+			<a href="rootlocationoptions.html" class="tsd-kind-icon">Root<wbr>Location<wbr>Options</a>
+		</li>
+		<li class="current tsd-kind-interface">
+			<a href="rootlocationtransformer.html" class="tsd-kind-icon">Root<wbr>Location<wbr>Transformer</a>
+			<ul>
+				<li class=" tsd-kind-method tsd-parent-kind-interface">
+					<a href="rootlocationtransformer.html#createrootlocation" class="tsd-kind-icon">create<wbr>Root<wbr>Location</a>
+				</li>
+				<li class=" tsd-kind-method tsd-parent-kind-interface">
+					<a href="rootlocationtransformer.html#getconsumerpathfromrootlocation" class="tsd-kind-icon">get<wbr>Consumer<wbr>Path<wbr>From<wbr>Root<wbr>Location</a>
+				</li>
+			</ul>
 		</li>
 		<li class=" tsd-kind-interface">
 			<a href="sharedhistoryservice.html" class="tsd-kind-icon">Shared<wbr>History<wbr>Service</a>
@@ -947,10 +947,10 @@ img { max-width: 100%; }
 			<a href="../globals.html#belongstocombinedlocation" class="tsd-kind-icon">belongs<wbr>ToCombined<wbr>Location</a>
 		</li>
 		<li class=" tsd-kind-function">
-			<a href="../globals.html#createfulllocationtransformer" class="tsd-kind-icon">create<wbr>Full<wbr>Location<wbr>Transformer</a>
+			<a href="../globals.html#createhistoryservicedefinition" class="tsd-kind-icon">create<wbr>History<wbr>Service<wbr>Definition</a>
 		</li>
 		<li class=" tsd-kind-function">
-			<a href="../globals.html#createhistoryservicedefinition" class="tsd-kind-icon">create<wbr>History<wbr>Service<wbr>Definition</a>
+			<a href="../globals.html#createrootlocationtransformer" class="tsd-kind-icon">create<wbr>Root<wbr>Location<wbr>Transformer</a>
 		</li>
 		<li class=" tsd-kind-function">
 			<a href="../globals.html#getconsumerpath" class="tsd-kind-icon">get<wbr>Consumer<wbr>Path</a>
@@ -966,7 +966,7 @@ img { max-width: 100%; }
 			<h3>Hierarchy</h3>
 			<ul class="tsd-hierarchy">
 				<li>
-					<span class="target">FullLocationTransformer</span>
+					<span class="target">RootLocationTransformer</span>
 				</li>
 			</ul>
 		</section>
@@ -977,8 +977,8 @@ img { max-width: 100%; }
 					<section class="tsd-index-section ">
 						<h3>Methods</h3>
 						<ul class="tsd-index-list">
-							<li class="tsd-kind-method tsd-parent-kind-interface"><a href="fulllocationtransformer.html#createfulllocation" class="tsd-kind-icon">create<wbr>Full<wbr>Location</a></li>
-							<li class="tsd-kind-method tsd-parent-kind-interface"><a href="fulllocationtransformer.html#getconsumerpathfromfulllocation" class="tsd-kind-icon">get<wbr>Consumer<wbr>Path<wbr>From<wbr>Full<wbr>Location</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-interface"><a href="rootlocationtransformer.html#createrootlocation" class="tsd-kind-icon">create<wbr>Root<wbr>Location</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-interface"><a href="rootlocationtransformer.html#getconsumerpathfromrootlocation" class="tsd-kind-icon">get<wbr>Consumer<wbr>Path<wbr>From<wbr>Root<wbr>Location</a></li>
 						</ul>
 					</section>
 				</div>
@@ -987,10 +987,10 @@ img { max-width: 100%; }
 		<section class="tsd-panel-group tsd-member-group ">
 			<h2>Methods</h2>
 			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
-				<a name="createfulllocation" class="tsd-anchor"></a>
-				<h3>create<wbr>Full<wbr>Location</h3>
+				<a name="createrootlocation" class="tsd-anchor"></a>
+				<h3>create<wbr>Root<wbr>Location</h3>
 				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
-					<li class="tsd-signature tsd-kind-icon">create<wbr>Full<wbr>Location<span class="tsd-signature-symbol">(</span>consumerLocation<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Location</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span>, fullLocation<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Location</span>, consumerId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">LocationDescriptorObject</span></li>
+					<li class="tsd-signature tsd-kind-icon">create<wbr>Root<wbr>Location<span class="tsd-signature-symbol">(</span>consumerLocation<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Location</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span>, rootLocation<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Location</span>, consumerId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">LocationDescriptorObject</span></li>
 				</ul>
 				<ul class="tsd-descriptions">
 					<li class="tsd-description">
@@ -1001,7 +1001,7 @@ img { max-width: 100%; }
 								<h5>consumerLocation: <span class="tsd-signature-type">Location</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></h5>
 							</li>
 							<li>
-								<h5>fullLocation: <span class="tsd-signature-type">Location</span></h5>
+								<h5>rootLocation: <span class="tsd-signature-type">Location</span></h5>
 							</li>
 							<li>
 								<h5>consumerId: <span class="tsd-signature-type">string</span></h5>
@@ -1012,10 +1012,10 @@ img { max-width: 100%; }
 				</ul>
 			</section>
 			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
-				<a name="getconsumerpathfromfulllocation" class="tsd-anchor"></a>
-				<h3>get<wbr>Consumer<wbr>Path<wbr>From<wbr>Full<wbr>Location</h3>
+				<a name="getconsumerpathfromrootlocation" class="tsd-anchor"></a>
+				<h3>get<wbr>Consumer<wbr>Path<wbr>From<wbr>Root<wbr>Location</h3>
 				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
-					<li class="tsd-signature tsd-kind-icon">get<wbr>Consumer<wbr>Path<wbr>From<wbr>Full<wbr>Location<span class="tsd-signature-symbol">(</span>fullLocation<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Location</span>, consumerId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></li>
+					<li class="tsd-signature tsd-kind-icon">get<wbr>Consumer<wbr>Path<wbr>From<wbr>Root<wbr>Location<span class="tsd-signature-symbol">(</span>rootLocation<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Location</span>, consumerId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></li>
 				</ul>
 				<ul class="tsd-descriptions">
 					<li class="tsd-description">
@@ -1023,7 +1023,7 @@ img { max-width: 100%; }
 						<h4 class="tsd-parameters-title">Parameters</h4>
 						<ul class="tsd-parameters">
 							<li>
-								<h5>fullLocation: <span class="tsd-signature-type">Location</span></h5>
+								<h5>rootLocation: <span class="tsd-signature-type">Location</span></h5>
 							</li>
 							<li>
 								<h5>consumerId: <span class="tsd-signature-type">string</span></h5>
